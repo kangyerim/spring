@@ -79,16 +79,26 @@ footer {
 	<section>
 		<nav>
 			<ul>
-				<li><a id="a-first" href="join.html">Join</a></li>
-				<li><a id="a-second" href="#">LogIn</a></li>
+				<li><a id="a-first" href="#">Join</a></li>
+				<li><a id="a-second" href="index.html">LogIn</a></li>
 				<li><a id="a-third" href="#">Tokyo</a></li>
 			</ul>
 		</nav>
 
 		<article>
 			<form action="#">
-				<label>ID </label><br> <input type="text"><br> <label>PassWord</label><br>
-				<input type="text"><br> <input id="b-first" type="button" value="로그인"><input id="b-second" type="button" value="취소">
+				<label>ID </label><br>
+				<input id ="userid" type="text" /><br> 
+				<label>PassWord</label><br>
+				<input id='password' type="text" /><br> 
+				<label>Name</label><br> 
+				<input id="name" type="text" /><br> 
+				<label>SSN</label><br> 
+				<input id='ssn' type="text" /><br> 
+				<label>Address</label><br> 
+				<input id ='address' type="text" /><br> 
+				<input id="joinButton" type="button" value="회원가입"> 
+				<input id="b-second" type="button" value="취소">
 			</form>
 		</article>
 	</section>
@@ -97,7 +107,33 @@ footer {
 		<p>Footer</p>
 	</footer>
 	<script type="text/javascript">
-		$('#a-first').click(function() {
+		$('#joinButton').click(function() {
+			
+			let member = {
+				userid: $('#userid').val(),
+				password: $('#password').val(),
+				name:$('#name').val(),
+				ssn: $('#ssn').val(),
+				address: $('#address').val()
+			}
+			
+			alert('입력된 주민번호 : '+ member.ssn)
+			
+			$.ajax({
+					url : '/join',
+					type : 'post',
+					data : JSON.stringify(member),
+					dataType : 'json',
+					contentType : 'application/json',
+					success : function(returnMember){
+						alert(returnMember.name + '님  회원가입 성공')
+					},
+					error : function(){
+						alert('회원가입 실패')
+					}
+					
+				})
+				
 		})
 		$('#a-second').click(function() {
 		})
