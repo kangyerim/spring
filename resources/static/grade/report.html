@@ -72,24 +72,29 @@ footer {
 </head>
 <body>
 	<header>
-		<h2>로그인 화면</h2>
+		<h2>성적표</h2>
 	</header>
 
 	<section>
 		<nav>
 			<ul>
-				<li><a id="a-first" href="member/join.html">Join</a></li>
-				<li><a id="a-second" href="#">LogIn</a></li>
-				<li><a id="a-third" href="#">자바스크립트</a></li>
+			
 			</ul>
 		</nav>
 
 		<article>
 			<form action="#">
-				<label>ID </label><br> <input id="userid" type="text"><br> 
-				<label>PassWord</label><br> <input id="password" type="text"><br>
-				<input id="loginButton" type="button" value="로그인">
-				<input id="cancelButton" type="button" value="취소">
+				<label>ID </label><br>
+				<input id ="userid" type="text" /><br> 
+				<label>Korean</label><br>
+				<input id='korean' type="text" /><br> 
+				<label>English</label><br> 
+				<input id="english" type="text" /><br> 
+				<label>Math</label><br> 
+				<input id='math' type="text" /><br> 
+				<label>Java</label><br> 
+				<input id ='java' type="text" /><br> 
+				<input id="registerButton" type="button" value="점수 등록"> 
 			</form>
 		</article>
 	</section>
@@ -98,60 +103,10 @@ footer {
 		<p>Footer</p>
 	</footer>
 	<script type="text/javascript">
-		$('#loginButton').click(function() {
-			$.ajax({
-				url : '/member/login',
-				type : 'post',
-				data : JSON.stringify({
-						userid : $('#userid').val(),
-						password : $('#password').val()
-				}),
-				dataType : 'json',
-				contentType : 'application/json',
-				success : function(message){
-					if(message == 'Success'){
-						location.href = 'grade/register.html'
-					}else {
-						alert('다시 로그인 해람뫄')
-						location.href = "index.html"
-					}
-				},
-				error : function(){
-					alert('네트워킹 실패')
-				}
-			})
-		})
-		$('#"cancelButton"').click(function() {
-		})
-		$('#a-third').click(function() {
-		})
-		$('#b-first').click(function(){
-		})
-		$('#b-second').click(function(){
-		})
+	
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

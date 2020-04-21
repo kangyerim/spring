@@ -7,11 +7,11 @@ public interface MemberService {
 
 	public Member[] searchByName(String name);
 
-	public Member login(Member member);
-
 	public Member detail(Member member);
 
 	public int count();
+
+	public boolean login(Member member);
 
 	public int count(String name);
 

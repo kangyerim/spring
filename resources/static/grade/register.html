@@ -71,17 +71,14 @@ footer {
 </style>
 </head>
 <body>
-	<h2>홈페이지</h2>
 	<header>
-		<h2>Cities</h2>
+		<h2>점수 등록</h2>
 	</header>
 
 	<section>
 		<nav>
 			<ul>
-				<li><a id="a-first" href="#">Join</a></li>
-				<li><a id="a-second" href="index.html">LogIn</a></li>
-				<li><a id="a-third" href="#">Tokyo</a></li>
+			
 			</ul>
 		</nav>
 
@@ -89,16 +86,16 @@ footer {
 			<form action="#">
 				<label>ID </label><br>
 				<input id ="userid" type="text" /><br> 
-				<label>PassWord</label><br>
-				<input id='password' type="text" /><br> 
-				<label>Name</label><br> 
-				<input id="name" type="text" /><br> 
-				<label>SSN</label><br> 
-				<input id='ssn' type="text" /><br> 
-				<label>Address</label><br> 
-				<input id ='address' type="text" /><br> 
-				<input id="joinButton" type="button" value="회원가입"> 
-				<input id="b-second" type="button" value="취소">
+				<label>Korean</label><br>
+				<input id='korean' type="text" /><br> 
+				<label>English</label><br> 
+				<input id="english" type="text" /><br> 
+				<label>Math</label><br> 
+				<input id='math' type="text" /><br> 
+				<label>Java</label><br> 
+				<input id ='java' type="text" /><br> 
+				<input id="registerButton" type="button" value="점수 등록"> 
+				<input id="showResult" type="button" value="총점, 평균, 학점 보기">
 			</form>
 		</article>
 	</section>
@@ -107,42 +104,55 @@ footer {
 		<p>Footer</p>
 	</footer>
 	<script type="text/javascript">
-		$('#joinButton').click(function() {
-			
-			let member = {
-				userid: $('#userid').val(),
-				password: $('#password').val(),
-				name:$('#name').val(),
-				ssn: $('#ssn').val(),
-				address: $('#address').val()
-			}
-			
-			alert('입력된 주민번호 : '+ member.ssn)
-			
+		$('#registerButton').click(function(){
 			$.ajax({
-					url : '/join',
-					type : 'post',
-					data : JSON.stringify(member),
-					dataType : 'json',
-					contentType : 'application/json',
-					success : function(returnMember){
-						alert(returnMember.name + '님  회원가입 성공')
-					},
-					error : function(){
-						alert('회원가입 실패')
-					}
-					
-				})
-				
+				url : '/grade/add',
+				type : 'post',
+				data : JSON.stringify({
+						userid : $('#userid').val(),
+						korean : $('#korean').val(),
+						english : $('#english').val(),
+						math : $('#math').val(),
+						java : $('#java').val()
+				}),
+				dataType : 'json',
+				contentType : 'application/json',
+				success : function(credit){
+					alert(credit)
+				},
+				error : function(){
+					alert('응~ 실 패 ~')
+				}
+			})
 		})
-		$('#a-second').click(function() {
-		})
-		$('#a-third').click(function() {
-		})
-		$('#b-first').click(function(){
-		})
-		$('#b-second').click(function(){
+		
+		$('#showResult').click(function(){
+			$.ajax({
+				url :'/grade/credit',
+				type : 'post',
+				data : JSON.stringify({
+						userid : $('#userid').val(),
+						korean : $('#korean').val(),
+						english : $('#english').val(),
+						math : $('#math').val(),
+						java : $('#java').val()
+				}),
+				dataType : 'json',
+				contentType : 'application/json',
+				success : function(result){
+					alert(result)
+				},
+				error : function(){
+					alert('응 실패')
+				}
+			})	
 		})
 	</script>
 </body>
 </html>
+
+
+
+
+
+
