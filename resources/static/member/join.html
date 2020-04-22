@@ -105,8 +105,9 @@ footer {
 	<footer>
 		<p>Footer</p>
 	</footer>
-	<script type="text/javascript">
-		$('#joinButton').click(function() {
+	<script>
+		$('#joinButton').click(e => {
+			e.preventDefault()
 			$.ajax({
 					url : '/member/join',
 					type : 'post',
@@ -118,27 +119,19 @@ footer {
 							address: $('#address').val()}),
 					dataType : 'json',
 					contentType : 'application/json',
-					success : function(message){
-						if(message === 'Success'){
+					success : d => {
+						if(d === 'Success'){
 							location.href="../index.html"
 						} else {
 							location.href="join.html"
 						}
 					},
-					error : function(){
-						alert('네트워킹 실패')
+					error : (request,status,error)=>{
+						alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
 					}
 					
 				})
 				
-		})
-		$('#a-second').click(function() {
-		})
-		$('#a-third').click(function() {
-		})
-		$('#b-first').click(function(){
-		})
-		$('#b-second').click(function(){
 		})
 	</script>
 </body>

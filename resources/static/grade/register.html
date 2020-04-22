@@ -97,14 +97,16 @@ footer {
 				<input id="registerButton" type="button" value="점수 등록"> 
 				<input id="showResult" type="button" value="총점, 평균, 학점 보기">
 			</form>
+				<div id="result"></div>
 		</article>
 	</section>
 
 	<footer>
 		<p>Footer</p>
 	</footer>
-	<script type="text/javascript">
-		$('#registerButton').click(function(){
+	<script >
+		$('#registerButton').click(e => {
+			e.preventDefault()
 			$.ajax({
 				url : '/grade/add',
 				type : 'post',
@@ -117,16 +119,18 @@ footer {
 				}),
 				dataType : 'json',
 				contentType : 'application/json',
-				success : function(credit){
-					alert(credit)
+				
+				success : d => {
+					alert(d)
 				},
-				error : function(){
-					alert('응~ 실 패 ~')
+				error : (req, s, err)=>{
+					alert(req.status + "\n" + req.responseText +"\n"+err)
 				}
 			})
 		})
-		
-		$('#showResult').click(function(){
+		/*
+		$('#showResult').click(e =>{
+			e.preventDefault()
 			$.ajax({
 				url :'/grade/credit',
 				type : 'post',
@@ -139,14 +143,32 @@ footer {
 				}),
 				dataType : 'json',
 				contentType : 'application/json',
-				success : function(result){
-					alert(result)
+				success : d => {
+					alert(d)
 				},
-				error : function(){
-					alert('응 실패')
+				error : (request,status,error)=>{
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
 				}
 			})	
 		})
+		*/
+		$('#showResult').click(e => {
+			e.preventDefault()
+				$.ajax({
+					url : '/grade/credit/'+ $('#userid').val(),
+					type : 'get',
+					dataType : 'json',
+					contentType : 'application/json',
+					success : d => {
+						$('#result').html(d)
+					},
+					error : (request,status,error)=>{
+						alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
+					}
+				})
+			})
+			
+	
 	</script>
 </body>
 </html>
