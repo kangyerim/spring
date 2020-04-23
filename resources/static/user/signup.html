@@ -72,26 +72,30 @@ footer {
 </head>
 <body>
 	<header>
-		<h2>로그인 화면</h2>
+		<h2>사용자 가입</h2>
 	</header>
 
 	<section>
 		<nav>
 			<ul>
-				<li><a id="join_a">관리자 등록</a></li>
-				<li><a id="login_a">관리자 접속</a></li>
-				<li><a id="lotto_a">Lotto</a></li>
-				<li><a id="signup_a">사용자 가입</a></li>
-				<li><a id="signin_a">사용자 로그인</a></li>
+				<li><a id="home_a" >HOME</a></li>
 			</ul>
 		</nav>
 
 		<article>
 			<form action="#">
-				<label>ID </label><br> <input id="userid" type="text"><br> 
-				<label>PassWord</label><br> <input id="password" type="text"><br>
-				<input id="loginButton" type="button" value="로그인">
-				<input id="cancelButton" type="button" value="취소">
+				<label>ID </label><br>
+				<input id ="userid" type="text" /><br> 
+				<label>PassWord</label><br>
+				<input id='password' type="text" /><br> 
+				<label>Name</label><br> 
+				<input id="name" type="text" /><br> 
+				<label>SSN</label><br> 
+				<input id='ssn' type="text" /><br> 
+				<label>Address</label><br> 
+				<input id ='address' type="text" /><br> 
+				<input id="signin_b" type="button" value="회원가입"> 
+				<input id="b-second" type="button" value="취소">
 			</form>
 		</article>
 	</section>
@@ -100,84 +104,44 @@ footer {
 		<p>Footer</p>
 	</footer>
 	<script>
-		$('#join_a')
-			.css('cursor','pointer')
-			.click( e => {
-				e.preventDefault()
-				location.href = "member/join.html"
-		})
-		$('#login-a')
-			.css('cursor','pointer')
-			.click( e => {
-				e.preventDefault()
-				location.href = "index.html"
-		})
-		$('#lotto_a')
+		$('#home_a')
 			.css('cursor', 'pointer')
 			.click( e => {
 				e.preventDefault()
-				location.href = "lotto/buy.html"
-			})
-		$('#signup_a')
-			.css('cursor','pointer')
-			.click ( e => {
-				e.preventDefault()
-				location.href = "user/signup.html"
-			})
-		$('#signin_a')
-			.css('cursor', 'pointer')
-			.click( e =>{
-				e.preventDefault()
-				location.href = "user/signin.html"
+				location.href = "../index.html"
 			})
 			
-		$('#loginButton').click(e => {
+		$('#signin_b').click ( e => {
+			e.preventDefault()
 			$.ajax({
-				url : '/member/login',
+				url : '/user/signup',
 				type : 'post',
 				data : JSON.stringify({
-						userid : $('#userid').val(),
-						password : $('#password').val()
+					userid : $('#userid').val(),
+					password : $('#password').val(),
+					name : $('#name').val(),
+					ssn : $('#ssn').val(),
+					address : $('#address').val()
 				}),
 				dataType : 'json',
 				contentType : 'application/json',
 				success : d => {
-					if(d == 'Success'){
-						location.href = 'grade/register.html'
+					if(d === 'Success'){
+						location.href ='signin.html'
 					}else {
-						alert('다시 로그인 해람뫄')
-						location.href = "index.html"
+						location.href = 'signup.html'
 					}
 				},
-				error : (request,status,error)=>{
+				error : (request, status, error) => {
 					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
 				}
 			})
 		})
-		
+	
+	
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

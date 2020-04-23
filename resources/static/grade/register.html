@@ -128,30 +128,7 @@ footer {
 				}
 			})
 		})
-		/*
-		$('#showResult').click(e =>{
-			e.preventDefault()
-			$.ajax({
-				url :'/grade/credit',
-				type : 'post',
-				data : JSON.stringify({
-						userid : $('#userid').val(),
-						korean : $('#korean').val(),
-						english : $('#english').val(),
-						math : $('#math').val(),
-						java : $('#java').val()
-				}),
-				dataType : 'json',
-				contentType : 'application/json',
-				success : d => {
-					alert(d)
-				},
-				error : (request,status,error)=>{
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
-				}
-			})	
-		})
-		*/
+
 		$('#showResult').click(e => {
 			e.preventDefault()
 				$.ajax({

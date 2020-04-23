@@ -72,84 +72,49 @@ footer {
 </head>
 <body>
 	<header>
-		<h2>로그인 화면</h2>
+		<h2>로또 구매</h2>
 	</header>
 
 	<section>
 		<nav>
 			<ul>
-				<li><a id="join_a">관리자 등록</a></li>
-				<li><a id="login_a">관리자 접속</a></li>
-				<li><a id="lotto_a">Lotto</a></li>
-				<li><a id="signup_a">사용자 가입</a></li>
-				<li><a id="signin_a">사용자 로그인</a></li>
+			
 			</ul>
 		</nav>
 
 		<article>
 			<form action="#">
-				<label>ID </label><br> <input id="userid" type="text"><br> 
-				<label>PassWord</label><br> <input id="password" type="text"><br>
-				<input id="loginButton" type="button" value="로그인">
-				<input id="cancelButton" type="button" value="취소">
+				<label>ID </label><br>
+				<input id ="userid" type="text" /><br> 
+				<label>로또 번호 입력(,로 분리)</label><br>
+				<input id='lotto_number' type="text" /><br> 
+				
+				<input id="buyButton" type="button" value="로또 구매"> 
+				<input id="resultButton" type="button" value="당첨 결과">
 			</form>
+				<div id="result"></div>
 		</article>
 	</section>
 
 	<footer>
 		<p>Footer</p>
 	</footer>
-	<script>
-		$('#join_a')
-			.css('cursor','pointer')
-			.click( e => {
-				e.preventDefault()
-				location.href = "member/join.html"
-		})
-		$('#login-a')
-			.css('cursor','pointer')
-			.click( e => {
-				e.preventDefault()
-				location.href = "index.html"
-		})
-		$('#lotto_a')
-			.css('cursor', 'pointer')
-			.click( e => {
-				e.preventDefault()
-				location.href = "lotto/buy.html"
-			})
-		$('#signup_a')
-			.css('cursor','pointer')
-			.click ( e => {
-				e.preventDefault()
-				location.href = "user/signup.html"
-			})
-		$('#signin_a')
-			.css('cursor', 'pointer')
-			.click( e =>{
-				e.preventDefault()
-				location.href = "user/signin.html"
-			})
-			
-		$('#loginButton').click(e => {
+	<script >
+		$('#lotto_number').click( e => {
+			e.preventDefault()
 			$.ajax({
-				url : '/member/login',
+				url : '/lotto/buy',
 				type : 'post',
 				data : JSON.stringify({
-						userid : $('#userid').val(),
-						password : $('#password').val()
+					userid : $('#userid').val(),
+					lotto_number : $('#lotto_number').val()
 				}),
 				dataType : 'json',
 				contentType : 'application/json',
 				success : d => {
-					if(d == 'Success'){
-						location.href = 'grade/register.html'
-					}else {
-						alert('다시 로그인 해람뫄')
-						location.href = "index.html"
-					}
+					alert(d)
 				},
-				error : (request,status,error)=>{
+				error : (request,status,error) => {
 					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error)
 				}
 			})
@@ -158,26 +123,6 @@ footer {
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
