@@ -86,7 +86,7 @@ footer {
 			<form action="#">
 				<label>ID </label><br> <input id="userid" type="text"><br> 
 				<label>PassWord</label><br> <input id="password" type="text"><br>
-				<input id="login_b" type="button" value="로그인">
+				<input id="signin_b" type="button" value="로그인">
 				<input id="cancelButton" type="button" value="취소">
 			</form>
 		</article>
@@ -115,7 +115,13 @@ footer {
 				dataType : 'json',
 				contentType : 'application/json',
 				success : d => {
-					
+					if(d.messenger === 'Success'){
+						sessionStorage.setItem('userid',d.user.userid)
+						location.href = 'mypage.html'
+					}else{
+						alert('땡~')
+						location.href = 'signin.html'
+					}
 				},
 				error : (request,status,error)=>{
 					alert(request.status)

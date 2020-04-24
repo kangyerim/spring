@@ -1,5 +1,7 @@
 package com.yerimspring.web.lotto;
 
+import java.util.Random;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,29 +14,26 @@ public class LottoNumServiceImpl implements LottoNumService {
 		count = 0;
 	}
 
-	
 	@Override
-	public void buy(Lotto number) {
-		String[] numbers = number.getLotto_number().split(",");
-		for(int i = 0; i <count; i++) {
-			number.setNum1(numbers[0]);
-			number.setNum2(numbers[1]);
-			number.setNum3(numbers[2]);
-			number.setNum4(numbers[3]);
-			number.setNum5(numbers[4]);
-			number.setNum6(numbers[5]);
-			add(number);
-		}
-	}
-	
-	private void add(Lotto number) {
-		numbers[count]= number;
+	public void add(Lotto number) {
+		numbers[count] = number;
 		count++;
 	}
-	
+
 	@Override
 	public int count() {
 		return count;
 	}
 
+	@SuppressWarnings("unused")
+	private String splitNumbers(Lotto number) {
+		String[] buyLotto = String.valueOf(number).split(",");
+		return buyLotto[count];
+	}
+	
+	private Random randomNumbers(Lotto number) {
+		Random randomNumbers = new Random();
+		
+		return randomNumbers;
+	}
 }
