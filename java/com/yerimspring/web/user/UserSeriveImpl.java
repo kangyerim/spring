@@ -38,7 +38,6 @@ public class UserSeriveImpl implements UserService {
 	@Override
 	public User detail(String userid) {
 		User t = (User) map.get(userid);
-		System.out.println("<>>>>><<>><>><<"+t);
 		return t;
 	}
 
