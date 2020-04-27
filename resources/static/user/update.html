@@ -105,7 +105,7 @@
           });
         }, false);
       })();
-      $.getJSON('/user/detail/'+sessionStorage.getItem('userid'),d =>{
+      $.getJSON('/user/detail/'+ sessionStorage.getItem('userid'),d =>{
     	  $('#name').val(d.name)
     	  $('#userid').text(d.userid)
     	  $('#address').val(d.address)

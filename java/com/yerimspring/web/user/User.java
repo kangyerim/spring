@@ -1,8 +1,16 @@
 package com.yerimspring.web.user;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
 public class User {
-private String userid, password, name, ssn, address; 
+	private String userid, password, name, ssn, address;
+	
+	@Override
+	public String toString() {
+		return String.format("%s,%s,%s,%s,%s", userid, password, name, ssn, address);
+	}
+	
 }

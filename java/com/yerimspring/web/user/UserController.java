@@ -1,6 +1,8 @@
 package com.yerimspring.web.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,17 @@ public class UserController {
 	@PostMapping("/signup")
 	public Messenger signup(@RequestBody User user) {
 		int count = userService.count();
-		userService.add(user);
-		return (userService.count() == (count + 1))? Messenger.Success : Messenger.FAIL;
+		userService.saveFile(user);
+		//return (userService.count() == (count + 1))? Messenger.Success : Messenger.FAIL;
+		return Messenger.Success;
 	}
+	
+	@GetMapping("/list")
+	public List<User> list(){
+		//return userService.list();
+		return userService.readFile();
+	}
+	
 	
 	@PostMapping("/signin")
 	public Map<String,Object> signin(@RequestBody User user) {
