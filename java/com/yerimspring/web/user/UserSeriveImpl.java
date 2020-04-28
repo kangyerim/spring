@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.JOptionPane;
 
 import java.util.Set;
 
@@ -79,9 +78,7 @@ public class UserSeriveImpl implements UserService {
 			Map.Entry<String, User> e = (Entry<String, User>) it.next();
 			list.add(e.getValue());
 		}
-		for(int i = 0; i <list.size(); i++) {
-			System.out.println(list.get(i));
-		}
+
 		return list;
 	}
 
@@ -116,8 +113,9 @@ public class UserSeriveImpl implements UserService {
 		} catch(Exception e) {
 			System.out.println("파일 읽기에서 에러 발생");
 		}
-		User u = new User();
+		User u = null;
 		for(int i = 0; i < list.size(); i++) {
+			u = new User();
 			String[] arr = list.get(i).split(",");
 			u.setUserid(arr[0]);
 			u.setPassword(arr[1]);
@@ -127,6 +125,12 @@ public class UserSeriveImpl implements UserService {
 			userList.add(u);
 		}
 		return userList;
+	}
+
+	@Override
+	public boolean idCheck(String userid) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -85,7 +85,7 @@ footer {
 		<article>
 			<form action="#">
 				<label>ID </label><br>
-				<input id ="userid" type="text" /><br> 
+				<input id ="userid" type="text" /><input id ="check_b" type = "button" value="중복확인"/> <br> 
 				<label>PassWord</label><br>
 				<input id='password' type="text" /><br> 
 				<label>Name</label><br> 
@@ -110,6 +110,14 @@ footer {
 				e.preventDefault()
 				location.href = "../index.html"
 			})
+			
+		$('#check_b').click (e => {
+			e.preventDefault()
+			$.getJSON('/user/idCheck/'+ $('#userid').val(), d => {
+				alert((d === 'FAIL')? '이미 사용중인 아이디': '사용가능한 아이뒤')
+			})
+		})
+			
 			
 		$('#signin_b').click ( e => {
 			e.preventDefault()

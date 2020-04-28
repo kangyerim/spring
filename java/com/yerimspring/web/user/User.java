@@ -1,6 +1,5 @@
 package com.yerimspring.web.user;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

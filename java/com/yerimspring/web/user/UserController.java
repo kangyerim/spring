@@ -36,6 +36,10 @@ public class UserController {
 		return userService.readFile();
 	}
 	
+	@GetMapping("/idCheck/{userid}")
+	public Messenger idCheck(@PathVariable String userid){
+		return (userService.idCheck(userid))? Messenger.Success : Messenger.FAIL;
+	}
 	
 	@PostMapping("/signin")
 	public Map<String,Object> signin(@RequestBody User user) {
